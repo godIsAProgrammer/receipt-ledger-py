@@ -30,16 +30,32 @@ python -m unittest discover -s tests
 
 ## Docker 环境
 
-构建镜像：
+确保 Docker Desktop 已启动。
+
+在项目根目录启动：
+
+```bash
+docker compose up --build
+```
+
+这个项目是 CLI 工具，Compose 启动后会执行一次样例收据汇总并正常退出。
+
+也可以单独构建镜像：
 
 ```bash
 docker build -t receipt-ledger-py .
 ```
 
-运行默认测试：
+直接运行容器：
 
 ```bash
 docker run --rm receipt-ledger-py
+```
+
+容器默认会执行样例收据汇总并输出 JSON。运行测试请使用显式命令：
+
+```bash
+docker run --rm receipt-ledger-py python -m unittest discover -s tests
 ```
 
 验证容器工作目录：
@@ -62,8 +78,14 @@ docker run --rm receipt-ledger-py git status --short
 
 预期没有任何输出。
 
-在容器中执行 CLI：
+在容器中执行自定义 CLI 命令：
 
 ```bash
 docker run --rm receipt-ledger-py python -m receipt_ledger.cli data/sample_receipts.txt --json
+```
+
+使用 Compose 运行测试：
+
+```bash
+docker compose run --rm receipt-ledger python -m unittest discover -s tests
 ```

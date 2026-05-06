@@ -11,10 +11,11 @@ COPY . /app/
 
 # 先确认解析与聚合测试通过，再把这个可工作的收据项目固化为 Git 初始提交。
 RUN python -m unittest discover -s tests \
-    && git init \
+    && git init -b main \
     && git config user.email "agent@example.invalid" \
     && git config user.name "Agent Fixture" \
     && git add . \
     && git commit -m "Initial receipt ledger fixture"
 
-CMD ["python", "-m", "unittest", "discover", "-s", "tests"]
+# 容器默认执行一份样例收据汇总，便于评审直接看到项目功能输出。
+CMD ["python", "-m", "receipt_ledger.cli", "data/sample_receipts.txt", "--json"]

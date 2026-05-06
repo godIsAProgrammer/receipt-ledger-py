@@ -1,0 +1,5 @@
+services:
+  receipt-ledger:
+    build: .
+    image: receipt-ledger-py
+    working_dir: /app
