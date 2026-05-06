@@ -1,0 +1,6 @@
+# sample export
+2026-05-01 | Noodle Shop | Food | 18.50 | CNY
+2026-05-01 | Metro | Transport | 4.00 | CNY
+2026-05-02 | Cloud Notes | Software | 8.99 | USD
+2026-05-03 | Market | Food | 31.20 | CNY
+

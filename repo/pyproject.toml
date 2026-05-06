@@ -1,0 +1,9 @@
+[project]
+name = "receipt-ledger"
+version = "0.1.0"
+description = "Parse plain text receipts into category summaries"
+requires-python = ">=3.11"
+
+[tool.pytest.ini_options]
+pythonpath = ["."]
+
