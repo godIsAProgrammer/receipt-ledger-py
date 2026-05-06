@@ -32,15 +32,7 @@ python -m unittest discover -s tests
 
 确保 Docker Desktop 已启动。
 
-在项目根目录启动：
-
-```bash
-docker compose up --build
-```
-
-这个项目是 CLI 工具，Compose 启动后会执行一次样例收据汇总并正常退出。
-
-也可以单独构建镜像：
+在项目根目录构建镜像：
 
 ```bash
 docker build -t receipt-ledger-py .
@@ -82,10 +74,4 @@ docker run --rm receipt-ledger-py git status --short
 
 ```bash
 docker run --rm receipt-ledger-py python -m receipt_ledger.cli data/sample_receipts.txt --json
-```
-
-使用 Compose 运行测试：
-
-```bash
-docker compose run --rm receipt-ledger python -m unittest discover -s tests
 ```

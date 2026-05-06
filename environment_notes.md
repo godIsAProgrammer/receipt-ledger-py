@@ -12,7 +12,6 @@
 ## 手动验证命令
 
 ```bash
-docker compose up --build
 docker build -t receipt-ledger-py .
 docker run --rm receipt-ledger-py
 docker run --rm receipt-ledger-py python -m unittest discover -s tests
