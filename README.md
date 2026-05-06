@@ -27,3 +27,43 @@ python -m receipt_ledger.cli data/sample_receipts.txt --json
 ```bash
 python -m unittest discover -s tests
 ```
+
+## Docker 环境
+
+构建镜像：
+
+```bash
+docker build -t receipt-ledger-py .
+```
+
+运行默认测试：
+
+```bash
+docker run --rm receipt-ledger-py
+```
+
+验证容器工作目录：
+
+```bash
+docker run --rm receipt-ledger-py pwd
+```
+
+预期输出为：
+
+```text
+/app
+```
+
+验证容器内初始仓库是否为干净 Git 工作区：
+
+```bash
+docker run --rm receipt-ledger-py git status --short
+```
+
+预期没有任何输出。
+
+在容器中执行 CLI：
+
+```bash
+docker run --rm receipt-ledger-py python -m receipt_ledger.cli data/sample_receipts.txt --json
+```
