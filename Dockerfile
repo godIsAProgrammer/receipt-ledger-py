@@ -7,7 +7,7 @@ ENV PYTHONDONTWRITEBYTECODE=1
 WORKDIR /app
 
 # 复制收据解析器、CLI、样例收据和 unittest 测试作为任务起始现场。
-COPY repo/ /app/
+COPY . /app/
 
 # 先确认解析与聚合测试通过，再把这个可工作的收据项目固化为 Git 初始提交。
 RUN python -m unittest discover -s tests \
