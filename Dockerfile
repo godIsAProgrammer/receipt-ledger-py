@@ -1,15 +1,15 @@
 FROM python:3.12
 
-# 避免测试或运行时生成 __pycache__，保持容器内初始仓库干净。
+# 这个收据汇总工具会反复运行单元测试；关闭字节码写入，避免初始仓库出现缓存文件。
 ENV PYTHONDONTWRITEBYTECODE=1
 
-# 标注文档要求容器内仓库统一位于 /app。
+# CLI、样例数据和测试都围绕 /app 下的收据项目运行。
 WORKDIR /app
 
-# repo/ 是交付的初始仓库现场，复制后即可开始 Agent 任务。
+# 复制收据解析器、CLI、样例收据和 unittest 测试作为任务起始现场。
 COPY repo/ /app/
 
-# 构建阶段先跑测试，再初始化 Git，确保进入容器后是干净可工作的现场。
+# 先确认解析与聚合测试通过，再把这个可工作的收据项目固化为 Git 初始提交。
 RUN python -m unittest discover -s tests \
     && git init \
     && git config user.email "agent@example.invalid" \
