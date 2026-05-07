@@ -17,5 +17,8 @@ RUN python -m unittest discover -s tests \
     && git add . \
     && git commit -m "Initial receipt ledger fixture"
 
-# 容器默认执行一份样例收据汇总，便于评审直接看到项目功能输出。
-CMD ["python", "-m", "receipt_ledger.cli", "data/sample_receipts.txt", "--json"]
+# 暴露 HTTP 服务端口,质检和评审可以通过 -p 端口映射访问 /health 与 /summary。
+EXPOSE 8788
+
+# 容器默认启动只读 HTTP 服务,可访问 /health 做健康检查、/summary 触发样例汇总。
+CMD ["python", "-m", "receipt_ledger.server"]
